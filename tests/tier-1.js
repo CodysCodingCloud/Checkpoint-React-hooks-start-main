@@ -54,21 +54,21 @@ describe('Tier 1: SinglePet component', () => {
     species: 'dog',
   };
 
-  xit("renders a pet's name, description, and species passed in as props", () => {
+  it("renders a pet's name, description, and species passed in as props", () => {
     const wrapper = mount(<SinglePet pet={rigatoni} />);
     expect(wrapper).to.include.text('Rigatoni');
     expect(wrapper).to.include.text('A flaming hot cheetoh in feline form');
     expect(wrapper).to.include.text('cat');
   });
 
-  xit('renders different name, description, and species if passed different props', () => {
+  it('renders different name, description, and species if passed different props', () => {
     const wrapper = mount(<SinglePet pet={cody} />);
     expect(wrapper).to.include.text('Cody');
     expect(wrapper).to.include.text('Adorable pug who loves to hug');
     expect(wrapper).to.include.text('dog');
   });
 
-  xit("renders a 'Toggle Status' button", () => {
+  it("renders a 'Toggle Status' button", () => {
     // The button doesn't need to "do anything" just yet. See the next test.
     const wrapper = mount(<SinglePet pet={rigatoni} />);
 

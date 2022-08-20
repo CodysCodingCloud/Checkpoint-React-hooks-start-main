@@ -1,7 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const { join } = require('path');
-const { getPets, addPet, removePet } = require('./petdata');
+const {
+  getPets,
+  addPet,
+  removePet,
+  updatePetAvailability,
+} = require('./petdata');
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
 const webpackConfig = require('./webpack.config');
@@ -18,7 +23,7 @@ app.use(morgan('dev'));
 app.get('/api/pets', (req, res) => {
   // Wanna see what would happen if this endpoint were to fail? Uncomment
   // this line and comment out the other responses:
-  // res.sendStatus(500)
+  // res.sendStatus(500);
 
   // Wanna see what would happen if this endpoint were to take a whole second?
   // Uncomment this line and comment out the other responses:
@@ -39,6 +44,13 @@ app.post('/api/pets', (req, res) => {
   res.json(newPet);
 });
 
+app.put('/api/pets/:id', (req, res) => {
+  console.log('server received this request body:\n', req.body);
+  const { id, available } = req.body;
+  const updated = { id, available };
+  updatePetAvailability(updated);
+  res.json(updated);
+});
 // DELETE pet with the given id
 app.delete('/api/pets/:id', (req, res) => {
   const id = Number(req.params.id);

@@ -36,9 +36,16 @@ const removePet = (petId) => {
   if (id < 0) throw new Error('Pet Not Found');
   pets.splice(id, 1);
 };
-
+const updatePetAvailability = (updatedPet) => {
+  let indexOfPet;
+  pets.forEach((pet, idx) =>
+    pet.id == updatedPet.id ? (indexOfPet = idx) : ''
+  );
+  pets[indexOfPet].available = updatedPet.available;
+};
 module.exports = {
   getPets,
   addPet,
   removePet,
+  updatePetAvailability,
 };

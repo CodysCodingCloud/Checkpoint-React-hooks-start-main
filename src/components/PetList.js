@@ -1,24 +1,41 @@
 import React from 'react';
 import SinglePet from './SinglePet';
 
-const cody = {
-  id: 2,
-  name: 'Cody',
-  description: 'Adorable pug who loves to hug',
-  species: 'dog',
-};
-
-// PetList only renders one SinglePet. We'd like it to render a list of pets,
-// passed in as props.pets. Don't forget to add a unique key to each one!
-function PetList() {
-
+function PetList({ pets }) {
+  const [species, setSpecies] = React.useState('all');
+  // console.log(pets);
+  let currentPetList = pets.filter((pet) => {
+    if (pet.species === species || species === 'all') {
+      return pet;
+    }
+  });
+  React.useEffect(() => {
+    return;
+  }, [species]);
+  const onChange = () => {
+    let selectSpecies = document.getElementById('selectSpecies').value;
+    // console.log(selectSpecies);
+    setSpecies(selectSpecies);
+  };
   return (
     <>
+      <select onChange={onChange} id="selectSpecies">
+        <option defaultValue="all">all</option>
+        <option value="cat">cat</option>
+        <option value="dog">dog</option>
+      </select>
       <div className="pet-list">
-            <SinglePet  pet={cody}  />
+        {currentPetList.map((pet) => (
+          <SinglePet
+            pet={pet}
+            key={pet.id}
+            // deletion={deletion}
+            // setDelete={setDelete}
+          />
+        ))}
       </div>
     </>
-  )
+  );
 }
 
 export default PetList;
