@@ -11,15 +11,16 @@ const AddPet = ({ toggleAdd, setToggleAdd }) => {
       description: targetObj.description.value,
     };
     await axios.post('./api/pets', newMember);
-    event.target.reset();
+    console.log('posted');
     setToggleAdd(!toggleAdd);
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} id="register">
+      <h1>Register Me!</h1>
       <div>
         <label>
-          Name
+          Name<br></br>
           <input type="text" name="name" required></input>
         </label>
       </div>
@@ -27,12 +28,14 @@ const AddPet = ({ toggleAdd, setToggleAdd }) => {
         <label>
           Species
           <select required name="species">
-            <option value="" disabled selected hidden>
+            <option value="" defaultValue hidden>
               select One
             </option>
             <option value="cat">cat</option>
             <option value="dog">dog</option>
             <option value="bird">bird</option>
+            <option value="hamster">hamster</option>
+            <option value="bunny">bunny</option>
           </select>
         </label>
       </div>

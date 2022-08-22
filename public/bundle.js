@@ -2510,7 +2510,7 @@ var AddPet = function AddPet(_ref) {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('./api/pets', newMember);
 
             case 5:
-              event.target.reset();
+              console.log('posted');
               setToggleAdd(!toggleAdd);
 
             case 7:
@@ -2527,8 +2527,9 @@ var AddPet = function AddPet(_ref) {
   }();
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-    onSubmit: onSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Name", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    onSubmit: onSubmit,
+    id: "register"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Register Me!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Name", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
     name: "name",
     required: true
@@ -2537,8 +2538,7 @@ var AddPet = function AddPet(_ref) {
     name: "species"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
     value: "",
-    disabled: true,
-    selected: true,
+    defaultValue: true,
     hidden: true
   }, "select One"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
     value: "cat"
@@ -2546,7 +2546,11 @@ var AddPet = function AddPet(_ref) {
     value: "dog"
   }, "dog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
     value: "bird"
-  }, "bird")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Describe me", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+  }, "bird"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "hamster"
+  }, "hamster"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "bunny"
+  }, "bunny")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Describe me", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     name: "description",
     type: "text",
     required: true
@@ -2568,10 +2572,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
+// import React from 'react';
 var DeletePet = function DeletePet() {
   return null;
 };
@@ -2607,10 +2608,19 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-
+ // const cody = {
+//   id: 2,
+//   name: 'Cody',
+//   description: 'Adorable pug who loves to hug',
+//   species: 'dog',
+// };
+// PetList only renders one SinglePet. We'd like it to render a list of pets,
+// passed in as props.pets. Don't forget to add a unique key to each one!
 
 function PetList(_ref) {
-  var pets = _ref.pets;
+  var pets = _ref.pets,
+      deletion = _ref.deletion,
+      setDelete = _ref.setDelete;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState('all'),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -2623,9 +2633,6 @@ function PetList(_ref) {
       return pet;
     }
   });
-  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    return;
-  }, [species]);
 
   var onChange = function onChange() {
     var selectSpecies = document.getElementById('selectSpecies').value; // console.log(selectSpecies);
@@ -2633,7 +2640,7 @@ function PetList(_ref) {
     setSpecies(selectSpecies);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "View"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
     onChange: onChange,
     id: "selectSpecies"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
@@ -2642,14 +2649,20 @@ function PetList(_ref) {
     value: "cat"
   }, "cat"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
     value: "dog"
-  }, "dog")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "dog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "bird"
+  }, "bird"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "hamster"
+  }, "hamster"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "bunny"
+  }, "bunny")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "pet-list"
-  }, currentPetList.map(function (pet) {
+  }, currentPetList.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "There are no ", species === 'all' ? 'pets' : species + 's', " to display") : currentPetList.map(function (pet) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SinglePet__WEBPACK_IMPORTED_MODULE_1__["default"], {
       pet: pet,
-      key: pet.id // deletion={deletion}
-      // setDelete={setDelete}
-
+      key: pet.id,
+      deletion: deletion,
+      setDelete: setDelete
     });
   })));
 }
@@ -2671,9 +2684,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _PetList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PetList */ "./src/components/PetList.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _PetList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PetList */ "./src/components/PetList.js");
 /* harmony import */ var _AddPet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddPet */ "./src/components/AddPet.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -2716,8 +2729,12 @@ var Root = function Root() {
   var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
       toggleAdd = _React$useState6[0],
-      setToggleAdd = _React$useState6[1]; // const [deletion, setDelete] = React.useState(0);
+      setToggleAdd = _React$useState6[1];
 
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+      _React$useState8 = _slicedToArray(_React$useState7, 2),
+      deletion = _React$useState8[0],
+      setDelete = _React$useState8[1];
 
   react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
     function getList() {
@@ -2733,47 +2750,49 @@ var Root = function Root() {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().get('./api/pets');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('./api/pets');
 
               case 3:
                 petList = _context.sent;
-                console.log('this', petList);
                 setPets(petList.data);
-                _context.next = 12;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](0);
-                console.log(_context.t0.message);
+                // console.log(error.message);
                 setErr("Error: ".concat(_context.t0.message));
 
-              case 12:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 7]]);
       }));
       return _getList.apply(this, arguments);
     }
 
     getList();
-  }, [toggleAdd]);
+  }, [toggleAdd, deletion]);
 
   var toggleAddBtn = function toggleAddBtn() {
     setToggleAdd(!toggleAdd);
     console.log('changed');
-  };
+  }; // console.log('current pets', pets);
 
-  console.log('current pets', pets);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Adoption Center"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, pets.length === 0 ? err === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Loading furries") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, err) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "This is our family")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: toggleAddBtn
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Adoption Center"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, pets.length === 0 ? err === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "Loading furries") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, err) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "This is our family")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: toggleAddBtn,
+    className: "btn"
   }, "but we can add more"), toggleAdd ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AddPet__WEBPACK_IMPORTED_MODULE_3__["default"], {
     toggleAdd: toggleAdd,
     setToggleAdd: setToggleAdd
-  }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PetList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    pets: pets
+  }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PetList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    pets: pets,
+    deletion: deletion,
+    setDelete: setDelete
   }));
 };
 
@@ -2822,21 +2841,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function SinglePet(_ref) {
-  var pet = _ref.pet;
+  var pet = _ref.pet,
+      deletion = _ref.deletion,
+      setDelete = _ref.setDelete;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(true),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       available = _React$useState2[0],
       setAvailable = _React$useState2[1];
-
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      deletion = _React$useState4[0],
-      setDelete = _React$useState4[1];
-
-  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    return;
-  }, [available, deletion]);
 
   var toggleAvailability = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -2844,15 +2856,11 @@ function SinglePet(_ref) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              pet.available == undefined ? pet.available = false : pet.available = !pet.available;
-              console.log('updated', pet);
-              _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("./api/pets/".concat(pet.id), pet);
+              pet.available == undefined ? pet.available = false : pet.available = !pet.available; // await axios.put(`./api/pets/${pet.id}`, pet);
 
-            case 4:
               setAvailable(!available);
 
-            case 5:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -2866,6 +2874,8 @@ function SinglePet(_ref) {
   }();
 
   var deletePet = function deletePet(pet) {
+    //causes rerendering
+    //pet.deleted = true
     var removePet = /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(pet) {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -2888,20 +2898,20 @@ function SinglePet(_ref) {
       };
     }();
 
-    console.log(pet);
     removePet(pet);
-    setDelete(true);
+    setDelete(deletion + 1);
     console.log('deleted');
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, !deletion ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, pet.deleted === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "single-pet ".concat(pet.available == undefined || pet.available == true ? '' : 'adopted')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: pet.id
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, pet.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick() {
       return deletePet(pet);
-    }
+    },
+    className: "btn btnDelete"
   }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Hi! I'm a ", pet.species)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Description: "), pet.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, available ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "I am currently Available") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, "I Have been Adopted!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: toggleAvailability
   }, "Toggle Status")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DeletePet__WEBPACK_IMPORTED_MODULE_2__["default"], null));

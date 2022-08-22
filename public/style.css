@@ -14,6 +14,7 @@ body {
   margin: 0.5rem;
   padding: 0.5rem;
   background-color: lightcoral;
+  position: relative;
 }
 
 .single-pet.adopted {
@@ -23,4 +24,28 @@ body {
 .delete-pet {
   background-color: orange;
   margin: 0.5rem;
+}
+.btn {
+  margin-bottom: 0.2rem;
+}
+.btnDelete {
+  color: red;
+  font-weight: 800;
+  position: absolute;
+  top: 0.4em;
+  right: 0.4em;
+}
+#register {
+  text-align: center;
+  width: 15rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  background-color: lightseagreen;
+  position: relative;
+}
+#register div {
+  margin-bottom: 0.5rem;
+}
+select {
+  margin-left: 0.5rem;
 }
